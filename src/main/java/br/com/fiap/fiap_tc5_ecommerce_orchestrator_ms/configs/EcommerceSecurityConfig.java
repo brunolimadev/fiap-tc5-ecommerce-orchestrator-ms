@@ -45,15 +45,19 @@ public class EcommerceSecurityConfig {
 
                 // Authorize Requests
                 .authorizeHttpRequests(
-                        authorizize -> {
-                            authorizize
-                                    .requestMatchers(HttpMethod.POST, "/auth/signin").permitAll()
-                                    .requestMatchers(HttpMethod.GET, "/auth/signout").permitAll()
-                                    .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                                    .requestMatchers("/api-docs/**").permitAll()
-                                    .requestMatchers("/swagger-ui/**").permitAll()
-                                    .anyRequest().authenticated();
-                        })
+                        authorize -> authorize
+
+                                // Allow access to Swagger
+                                .requestMatchers("/api-docs/**").permitAll()
+                                .requestMatchers("/swagger-ui/**").permitAll()
+
+                                // Allow access to application
+                                .requestMatchers(HttpMethod.POST, "/auth/signin").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/users").permitAll()
+
+                                // Any other request must be authenticated
+                                .requestMatchers(HttpMethod.GET, "/auth/signout").authenticated()
+                                .anyRequest().authenticated())
                 .addFilterBefore(securityFilter,
                         UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(exception -> exception

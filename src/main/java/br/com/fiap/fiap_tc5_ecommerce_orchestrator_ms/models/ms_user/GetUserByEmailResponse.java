@@ -1,4 +1,4 @@
-package br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.ms_users;
+package br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.ms_user;
 
 import java.time.LocalDateTime;
 import java.util.Collection;

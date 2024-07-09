@@ -25,3 +25,5 @@ microservices:
         url: http://localhost:8083/ecommerce-management/api/v1/carts
     payment-ms:
         url: http://localhost:8084/ecommerce-management/api/v1/payments
+    session-ms:
+        url: http://localhost:8085/ecommerce-management/api/v1/sessions

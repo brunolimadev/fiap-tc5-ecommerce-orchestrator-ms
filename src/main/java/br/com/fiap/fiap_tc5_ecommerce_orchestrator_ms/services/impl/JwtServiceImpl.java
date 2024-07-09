@@ -8,7 +8,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 
-import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.ms_users.GetUserByEmailResponse;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.ms_user.GetUserByEmailResponse;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.JwtService;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.utils.EcommerceOrchestratorUtils;
 
@@ -28,13 +28,14 @@ public class JwtServiceImpl implements JwtService {
      * @throws Exception
      */
     @Override
-    public String generateToken(GetUserByEmailResponse user) throws Exception {
+    public String generateToken(GetUserByEmailResponse user, String sessionId) throws Exception {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer(ISSUER)
                     .withSubject(user.getEmail())
                     .withClaim("id", user.getId().toString())
+                    .withClaim("sessionId", sessionId)
                     .withClaim("role", user.getRole().getRole())
                     .withExpiresAt(EcommerceOrchestratorUtils.generateExpirationDate())
                     .sign(algorithm);
