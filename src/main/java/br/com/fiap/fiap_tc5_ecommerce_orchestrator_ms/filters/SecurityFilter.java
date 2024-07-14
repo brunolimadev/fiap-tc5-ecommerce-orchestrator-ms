@@ -10,6 +10,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.AuthService;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.JwtService;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.SessionService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,9 +23,12 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     private final AuthService authService;
 
-    public SecurityFilter(JwtService jwtService, AuthService authService) {
+    private final SessionService sessionService;
+
+    public SecurityFilter(JwtService jwtService, AuthService authService, SessionService sessionService) {
         this.jwtService = jwtService;
         this.authService = authService;
+        this.sessionService = sessionService;
     }
 
     @Override
@@ -32,14 +36,24 @@ public class SecurityFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         if (this.getToken(request) != null) {
-            var email = jwtService.validateToken(this.getToken(request));
+
+            var token = this.getToken(request);
+
+            var email = jwtService.validateToken(token);
 
             UserDetails user = authService.loadUserByUsername(email);
+
+            var sessionId = jwtService.extractSessionId(token);
+
+            var revokedToken = sessionService.getRevokedToken(sessionId);
+
+            if (revokedToken != null) {
+                throw new RuntimeException("Sessão inválida");
+            }
 
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
         }
 
         // Continua a requisição para o próximo filtro

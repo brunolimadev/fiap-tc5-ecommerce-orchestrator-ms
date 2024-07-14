@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
-import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.ErrorDto;
-import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.ErrorFieldDto;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.error.ErrorDto;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.error.ErrorFieldDto;
 
 @ControllerAdvice
 public class ExceptionAdvice {

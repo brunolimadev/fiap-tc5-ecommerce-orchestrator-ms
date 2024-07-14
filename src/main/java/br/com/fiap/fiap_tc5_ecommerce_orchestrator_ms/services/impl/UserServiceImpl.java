@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.UserDto;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.user.CreateUserRequestDto;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.user.CreateUserResponseDto;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.ms_user.GetUserByEmailResponse;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.UserService;
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
      * @param userDto
      */
     @Override
-    public CreateUserResponseDto create(UserDto userDto) {
+    public CreateUserResponseDto create(CreateUserRequestDto userDto) {
 
         try {
 

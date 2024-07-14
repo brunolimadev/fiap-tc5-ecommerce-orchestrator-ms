@@ -1,4 +1,4 @@
-package br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos;
+package br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.user;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

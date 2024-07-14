@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.UserDto;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.user.CreateUserRequestDto;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.UserService;
 import jakarta.validation.Valid;
 
@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createUser(@Valid @RequestBody UserDto request) {
+    public ResponseEntity<?> createUser(@Valid @RequestBody CreateUserRequestDto request) {
         userService.create(request);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();

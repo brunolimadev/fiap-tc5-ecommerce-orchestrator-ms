@@ -9,7 +9,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.ErrorDto;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.error.ErrorDto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

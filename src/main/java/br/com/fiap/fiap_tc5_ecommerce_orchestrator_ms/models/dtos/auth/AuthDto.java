@@ -1,0 +1,8 @@
+package br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.auth;
+
+import jakarta.validation.constraints.Email;
+
+public record AuthDto(
+        @Email(message = "Deve ser um email válido.") String email,
+        String password) {
+}
