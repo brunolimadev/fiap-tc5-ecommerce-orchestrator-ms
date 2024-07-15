@@ -45,11 +45,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
             var sessionId = jwtService.extractSessionId(token);
 
-            var revokedToken = sessionService.getRevokedToken(sessionId);
-
-            if (revokedToken != null) {
-                throw new RuntimeException("Sessão inválida");
-            }
+            sessionService.getRevokedToken(sessionId);
 
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 
