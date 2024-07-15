@@ -3,9 +3,11 @@ package br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.controllers;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.ms_cart.CartItemModel;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.ms_cart.CartModel;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.CartService;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.JwtService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +18,15 @@ import org.springframework.web.bind.annotation.*;
 public class CartController {
 
   private final CartService cartService;
+  private final JwtService jwtService;
 
   public CartController(
-          CartService cartService
+          CartService cartService,
+          JwtService jwtService
   ) {
     
     this.cartService = cartService;
+    this.jwtService = jwtService;
 
   }
 
@@ -33,8 +38,10 @@ public class CartController {
   @PostMapping
   public ResponseEntity<CartModel> addCartItem(
           @RequestBody CartItemModel cartItemModel,
-          @RequestHeader("session-id") String sessionId
+          @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt
   ) {
+
+    var sessionId = jwtService.extractSessionId(jwt);
 
     return ResponseEntity
             .status(HttpStatus.CREATED)
@@ -47,8 +54,10 @@ public class CartController {
   @DeleteMapping(value = "{item_id}")
   public ResponseEntity<CartModel> removeCartItem(
           @PathVariable("item_id") Long id,
-          @RequestHeader("session-id") String sessionId
+          @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt
   ) {
+
+    var sessionId = jwtService.extractSessionId(jwt);
 
     return  ResponseEntity
             .status(HttpStatus.OK)

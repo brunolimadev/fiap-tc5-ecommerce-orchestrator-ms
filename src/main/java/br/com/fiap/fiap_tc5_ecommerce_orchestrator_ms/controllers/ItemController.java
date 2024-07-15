@@ -35,7 +35,6 @@ public class ItemController {
                         @RequestBody ItemModel itemModel,
                         @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
 
-                // Extrai o sessionId do token
                 var sessionId = jwtService.extractSessionId(jwt);
 
                 return ResponseEntity
@@ -48,7 +47,9 @@ public class ItemController {
         @ApiResponse(responseCode = "200", description = "Gets list of all items")
         @GetMapping
         public ResponseEntity<List<ItemModel>> getAllItems(
-                        @RequestHeader("session-id") String sessionId) {
+                @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
+
+                var sessionId = jwtService.extractSessionId(jwt);
 
                 return ResponseEntity
                                 .status(HttpStatus.OK)
@@ -61,7 +62,9 @@ public class ItemController {
         @GetMapping(value = "{item_id}")
         public ResponseEntity<ItemModel> getItem(
                         @PathVariable("item_id") Long id,
-                        @RequestHeader("session-id") String sessionId) {
+                        @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
+
+                var sessionId = jwtService.extractSessionId(jwt);
 
                 return ResponseEntity
                                 .status(HttpStatus.OK)
@@ -74,7 +77,9 @@ public class ItemController {
         @DeleteMapping(value = "{item_id}")
         public ResponseEntity<ItemModel> removeItem(
                         @PathVariable("item_id") Long id,
-                        @RequestHeader("session-id") String sessionId) {
+                        @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
+
+                var sessionId = jwtService.extractSessionId(jwt);
 
                 return ResponseEntity
                                 .status(HttpStatus.OK)
@@ -88,7 +93,9 @@ public class ItemController {
         public ResponseEntity<ItemModel> updateItem(
                         @PathVariable("item_id") Long id,
                         @RequestBody ItemModel itemModel,
-                        @RequestHeader("session-id") String sessionId) {
+                        @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
+
+                var sessionId = jwtService.extractSessionId(jwt);
 
                 return ResponseEntity
                                 .status(HttpStatus.OK)
