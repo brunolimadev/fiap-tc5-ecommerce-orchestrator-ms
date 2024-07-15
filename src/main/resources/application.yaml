@@ -22,7 +22,7 @@ microservices:
     item-ms:
         url: http://localhost:8082/ecommerce-management/api/v1/items
     cart-ms:
-        url: http://localhost:8083/ecommerce-management/api/v1/carts
+        url: http://localhost:8083/ecommerce-management/api/v1/cart
     payment-ms:
         url: http://localhost:8084/ecommerce-management/api/v1/payments
     session-ms:
