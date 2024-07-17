@@ -56,7 +56,6 @@ public class EcommerceSecurityConfig {
                                 .requestMatchers(HttpMethod.POST, "/users").permitAll()
 
                                 // Any other request must be authenticated
-                                .requestMatchers(HttpMethod.GET, "/auth/signout").authenticated()
                                 .anyRequest().authenticated())
                 .addFilterBefore(securityFilter,
                         UsernamePasswordAuthenticationFilter.class)
