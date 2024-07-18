@@ -7,15 +7,16 @@ import java.time.LocalDateTime;
 
 public record PaymentResponseDTO(
 
-        String idStatus,
-        @JsonProperty("idProcessPayment")
-        String idProcessPayment,
+                String idStatus,
 
-        LocalDateTime dateTimeStartStage,
-        LocalDateTime dateTimeEndStage,
-        String status,
+                @JsonProperty("idProcessPayment") String idProcessPayment,
 
-        String idShoppingCart
+                LocalDateTime dateTimeStartStage,
+                LocalDateTime dateTimeEndStage,
 
+                String status,
 
-) {}
+                String idShoppingCart
+
+) {
+}

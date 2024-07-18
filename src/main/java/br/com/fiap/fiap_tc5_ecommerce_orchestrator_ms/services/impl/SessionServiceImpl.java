@@ -3,6 +3,7 @@ package br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.impl;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.session.CreateSessionRequestDto;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.session.CreateSessionResponseDto;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.session.GetRevokedTokenResponseDto;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.session.GetSessionResponseDto;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.ms_session.CreateSessionRequest;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.ms_session.CreateSessionResponse;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.ms_session.GetRevokedTokenResponse;
@@ -102,20 +103,20 @@ public class SessionServiceImpl implements SessionService {
         }
     }
 
+    @SuppressWarnings("null")
     @Override
-    public GetSessionResponse getSession(String sessionId) {
+    public GetSessionResponseDto getSession(String sessionId) {
 
         try {
 
             String url = new StringBuilder(sessionMsUrl)
-                    .append("/sessionId")
                     .append("/")
                     .append(sessionId)
                     .toString();
 
-            var response = restTemplate.getForEntity(url, GetRevokedTokenResponse.class);
-            var responseDto = new GetSessionResponse();
-            BeanUtils.copyProperties(response, responseDto);
+            var response = restTemplate.getForEntity(url, GetSessionResponse.class);
+            var responseDto = new GetSessionResponseDto();
+            BeanUtils.copyProperties(response.getBody(), responseDto);
             return responseDto;
 
         } catch (HttpClientErrorException e) {

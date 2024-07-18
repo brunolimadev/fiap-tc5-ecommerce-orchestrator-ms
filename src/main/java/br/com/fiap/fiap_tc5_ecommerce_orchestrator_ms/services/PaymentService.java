@@ -5,6 +5,6 @@ import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.payment.Paymen
 
 public interface PaymentService {
 
-    PaymentResponseDTO processPayment(PaymentRequestDTO paymentRequestDTO, String sessionId);
+    Object processPayment(PaymentRequestDTO paymentRequestDTO, String sessionId);
 
 }

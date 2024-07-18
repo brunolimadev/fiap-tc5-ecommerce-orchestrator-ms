@@ -13,9 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("payment")
-@Tag(name = "Payment Controller",
-     description = "Customer can request payment for API resources")
+@RequestMapping("payments")
+@Tag(name = "Payment Controller", description = "Customer can request payment for API resources")
 public class PaymentController {
 
     private PaymentService paymentService;
@@ -28,12 +27,9 @@ public class PaymentController {
     }
 
     @Operation(summary = "Request Payment")
-    @ApiResponse(
-            responseCode = "201",
-            description = "Returns payment status"
-    )
+    @ApiResponse(responseCode = "201", description = "Returns payment status")
     @PostMapping
-    public ResponseEntity<PaymentResponseDTO> processPayment(
+    public ResponseEntity<Object> processPayment(
             @RequestBody PaymentRequestDTO requestDTO,
             @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
 
@@ -41,7 +37,7 @@ public class PaymentController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(paymentService.processPayment(requestDTO,sessionId));
+                .body(paymentService.processPayment(requestDTO, sessionId));
     }
 
 }
