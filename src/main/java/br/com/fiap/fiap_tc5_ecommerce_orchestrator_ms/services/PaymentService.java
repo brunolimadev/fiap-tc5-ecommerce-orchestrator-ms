@@ -1,10 +1,9 @@
 package br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services;
 
-import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.payment.PaymentRequestDTO;
-import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.payment.PaymentResponseDTO;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.payment.PaymentRequestDto;
 
 public interface PaymentService {
 
-    Object processPayment(PaymentRequestDTO paymentRequestDTO, String sessionId);
+    Object processPayment(PaymentRequestDto paymentRequestDTO, String sessionId);
 
 }

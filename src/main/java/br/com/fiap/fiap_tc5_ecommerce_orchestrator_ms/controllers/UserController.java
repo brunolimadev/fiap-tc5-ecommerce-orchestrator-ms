@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.user.CreateUserRequestDto;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/users")
+@Tag(name = "User Controller", description = "User management")
 public class UserController {
 
     private final UserService userService;

@@ -1,7 +1,6 @@
 package br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.controllers;
 
-import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.payment.PaymentRequestDTO;
-import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.payment.PaymentResponseDTO;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.payment.PaymentRequestDto;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.JwtService;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.PaymentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,7 +29,7 @@ public class PaymentController {
     @ApiResponse(responseCode = "201", description = "Returns payment status")
     @PostMapping
     public ResponseEntity<Object> processPayment(
-            @RequestBody PaymentRequestDTO requestDTO,
+            @RequestBody PaymentRequestDto requestDTO,
             @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
 
         var sessionId = jwtService.extractSessionId(jwt);

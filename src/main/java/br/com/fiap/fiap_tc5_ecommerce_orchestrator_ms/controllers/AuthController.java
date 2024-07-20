@@ -16,11 +16,13 @@ import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.user.SignInRes
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.ms_user.GetUserByEmailResponse;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.JwtService;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.SessionService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Auth Controller", description = "User authentication")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;

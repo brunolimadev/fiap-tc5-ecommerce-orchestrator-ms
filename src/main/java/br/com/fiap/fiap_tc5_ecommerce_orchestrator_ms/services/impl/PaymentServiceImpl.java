@@ -1,7 +1,7 @@
 package br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.impl;
 
-import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.payment.PaymentRequestDTO;
-import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.payment.PaymentRequestIntegrationDTO;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.payment.PaymentRequestDto;
+import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.payment.PaymentRequestIntegrationDto;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.models.dtos.session.GetSessionResponseDto;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.PaymentService;
 import br.com.fiap.fiap_tc5_ecommerce_orchestrator_ms.services.SessionService;
@@ -38,11 +38,9 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Object processPayment(PaymentRequestDTO paymentRequestDTO, String sessionId) {
+    public Object processPayment(PaymentRequestDto paymentRequestDTO, String sessionId) {
 
         try {
-
-            // TODO Validar se o ID do carrinho é igual ao da Sessão (Segurança)
 
             // Resgata a sessão
             GetSessionResponseDto sessionResponse = sessionService.getSession(sessionId);
@@ -54,7 +52,7 @@ public class PaymentServiceImpl implements PaymentService {
             Double shoppingCardAmount = getShoppingCartTotalOrder(sessionData);
 
             // Monta solicitação com o valor total do carrinho
-            var paymentRequestIntegrationDTO = new PaymentRequestIntegrationDTO(
+            var paymentRequestIntegrationDTO = new PaymentRequestIntegrationDto(
                     paymentRequestDTO.idShoppingCart(),
                     paymentRequestDTO.cardRequestDTO(),
                     shoppingCardAmount);
@@ -63,7 +61,7 @@ public class PaymentServiceImpl implements PaymentService {
             HttpHeaders headers = new HttpHeaders();
             headers.set(SESSION_ID_HEADER, sessionId);
 
-            HttpEntity<PaymentRequestIntegrationDTO> requestEntity;
+            HttpEntity<PaymentRequestIntegrationDto> requestEntity;
             requestEntity = new HttpEntity<>(paymentRequestIntegrationDTO, headers);
 
             // Envia a requisição HTTP POST para o microserviço de pagamento
