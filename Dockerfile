@@ -15,7 +15,7 @@ RUN mvn clean install
 
 FROM openjdk:17-slim
 
-# Copiamos o arquivo JAR gerado na etapa anterior para a pasta /usr/app
+# Copiamos o arquivo JAR gerado na etapa anterior para a pasta /usr/app, o comando --from é utilizado para referenciar a imagem anterior
 COPY --from=build /usr/src/app/target/*.jar /usr/app/app.jar
 
 # Definimos o diretório de trabalho
