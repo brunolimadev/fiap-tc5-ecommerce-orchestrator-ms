@@ -18,12 +18,12 @@ api:
 
 microservices:
     user-ms:
-        url: http://localhost:8081/ecommerce-management/api/v1/users
+        url: ${USER_MS_URL:http://localhost:8081/ecommerce-management/api/v1/users}
     item-ms:
-        url: http://localhost:8082/ecommerce-management/api/v1/items
+        url: ${ITEM_MS_URL:http://localhost:8082/ecommerce-management/api/v1/items}
     cart-ms:
-        url: http://localhost:8083/ecommerce-management/api/v1/cart
+        url: ${CART_MS_URL:http://localhost:8083/ecommerce-management/api/v1/cart}
     payment-ms:
-        url: http://localhost:8084/ecommerce-management/api/v1/payments
+        url: ${PAYMENT_MS_URL:http://localhost:8084/ecommerce-management/api/v1/payments}
     session-ms:
-        url: http://localhost:8085/ecommerce-management/api/v1/sessions
+        url: ${SESSION_MS_URL:http://localhost:8085/ecommerce-management/api/v1/sessions}
